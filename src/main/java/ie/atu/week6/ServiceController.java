@@ -1,10 +1,7 @@
 package ie.atu.week6;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +29,16 @@ public class ServiceController {
             }
         }
         myList.add(product);
+        return myList;
+    }
+
+    @DeleteMapping
+    public List<Product> deleteProduct(String id) {
+        for(Product p : myList){
+            if(p.getId().equals(id)){
+                myList.remove(p);
+            }
+        }
         return myList;
     }
 }

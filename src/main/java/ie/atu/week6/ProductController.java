@@ -1,5 +1,7 @@
 package ie.atu.week6;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,5 +29,15 @@ public class ProductController {
         list = myService.addProduct(product);
         return list;
     }
+
+    @Autowired
+    private ServiceController serviceController;
+
+    @PutMapping("/{id}")
+    public ResponseEntity<List<Product>> updateProduct(@PathVariable String id, @RequestBody Product product) {
+        List<Product> updatedList = serviceController.updateProduct(id, product);
+        return ResponseEntity.ok(updatedList);
+    }
+
 
 }
